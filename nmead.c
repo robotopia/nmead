@@ -64,7 +64,7 @@ void get_point(int n, double *x, double *x_bar, double coeff, double *x_out) {
     }
 }
 
-void copy_point(int n, double *x_from, double *x_to, double fx_from, double *fx_to) {
+void copy_nm_point(int n, double *x_from, double *x_to, double fx_from, double *fx_to) {
     int j;
     for(j=0; j<n; j++) {
         x_to[j] = x_from[j];
@@ -134,15 +134,15 @@ void nelder_mead(double *x0, int n, nm_optimset optimset, nm_point *solution, do
             eval_count++;
             if(fx_e<fx_r) {
                 // expand
-                copy_point(n, x_e, points[n].x, fx_e, &(points[n].fx));
+                copy_nm_point(n, x_e, points[n].x, fx_e, &(points[n].fx));
             } else {
                 // reflect
-                copy_point(n, x_r, points[n].x, fx_r, &(points[n].fx));
+                copy_nm_point(n, x_r, points[n].x, fx_r, &(points[n].fx));
             }
         } else {
             if(fx_r<points[n-1].fx) {
                 // reflect
-                copy_point(n, x_r, points[n].x, fx_r, &(points[n].fx));
+                copy_nm_point(n, x_r, points[n].x, fx_r, &(points[n].fx));
             } else {
                 if(fx_r<points[n].fx) {
                     get_point(n, points[n].x, x_bar, NM_RHO*NM_GAMMA, x_c);
@@ -150,7 +150,7 @@ void nelder_mead(double *x0, int n, nm_optimset optimset, nm_point *solution, do
                     eval_count++;
                     if(fx_c<=fx_r) {
                         // contract outside
-                        copy_point(n, x_c, points[n].x, fx_c, &(points[n].fx));
+                        copy_nm_point(n, x_c, points[n].x, fx_c, &(points[n].fx));
                     } else {
                         // shrink
                         shrink = 1;
@@ -161,7 +161,7 @@ void nelder_mead(double *x0, int n, nm_optimset optimset, nm_point *solution, do
                     eval_count++;
                     if(fx_c<=points[n].fx) {
                         // contract inside
-                        copy_point(n, x_c, points[n].x, fx_c, &(points[n].fx));
+                        copy_nm_point(n, x_c, points[n].x, fx_c, &(points[n].fx));
                     } else {
                         // shrink
                         shrink = 1;
@@ -188,7 +188,7 @@ void nelder_mead(double *x0, int n, nm_optimset optimset, nm_point *solution, do
     }
     
     // save solution in output argument
-    copy_point(n, points[0].x, solution->x, points[0].fx, &(solution->fx));
+    copy_nm_point(n, points[0].x, solution->x, points[0].fx, &(solution->fx));
 
     // Free memory
     for(i=0; i<n+1; i++)

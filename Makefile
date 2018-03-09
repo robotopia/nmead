@@ -1,7 +1,7 @@
 CC      = gcc
 
 LDLIBS  =
-OPTIM   = -O3
+OPTIM   = -O2
 
 ## Uncomment these to turn on fsanitize option
 #LDLIBS = -lasan

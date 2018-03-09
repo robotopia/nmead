@@ -1,11 +1,11 @@
 CC      = gcc
 
 LDLIBS  =
-OPTIM   = -O3
+OPTIM   = -O2
 
 ## Uncomment these to turn on fsanitize option
 #LDLIBS = -lasan
-#OPTIM   = -O3 -fsanitize=address 
+#OPTIM   = -O2 -fsanitize=address 
 
 CFLAGS  = -Wall -Wextra $(OPTIM)
 

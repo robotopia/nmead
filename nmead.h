@@ -85,7 +85,7 @@ void nelder_mead( double *,
                   int,
                   nm_optimset,
                   nm_point *,
-                  double (*cost_fun)(int, const double *, void *),
+                  double (*cost_fun)(long int, const double *, void *),
                   void *);
 
 #endif

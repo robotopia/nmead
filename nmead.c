@@ -95,7 +95,7 @@ void print_min(int n, nm_point *points) {
 }
 
 
-void nelder_mead(double *x0, int n, nm_optimset optimset, nm_point *solution, double (*cost_fun)(int, const double *, void *), void *cost_fun_args) {
+void nelder_mead(double *x0, int n, nm_optimset optimset, nm_point *solution, double (*cost_fun)(long int, const double *, void *), void *cost_fun_args) {
     
     int        i, j;
     int        iter_count, eval_count;
